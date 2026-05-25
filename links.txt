@@ -1,0 +1,7 @@
+FAYDA - Local Server Links
+==========================
+
+Main Site:    http://localhost:5500
+Admin Panel:  http://localhost:5500/admin.html
+
+To start the server: node server.js

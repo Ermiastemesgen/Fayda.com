@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAYDA - Admin Panel</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span>⚙️</span>
+      <span>FAYDA Admin</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-tab="categories">
+        <span>📂</span> Categories
+      </a>
+      <a href="#" class="nav-item" data-tab="settings">
+        <span>🎨</span> Site Settings
+      </a>
+      <a href="#" class="nav-item" data-tab="appearance">
+        <span>✨</span> Appearance
+      </a>
+      <a href="index.html" class="nav-item" target="_blank">
+        <span>🌐</span> View Site
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <h1 class="topbar-title" id="tabTitle">Categories</h1>
+      <button class="dark-toggle" id="darkToggle">🌙</button>
+    </header>
+
+    <!-- TAB: CATEGORIES -->
+    <section class="tab-content active" id="tab-categories">
+
+      <div class="panel-header">
+        <h2>Manage Categories</h2>
+        <button class="btn-primary" id="openAddModal">+ Add Category</button>
+      </div>
+
+      <div class="card-list" id="adminCardList"></div>
+    </section>
+
+    <!-- TAB: SETTINGS -->
+    <section class="tab-content" id="tab-settings">
+      <div class="panel-header"><h2>Site Settings</h2></div>
+      <div class="settings-form">
+        <label>Site Name
+          <input type="text" id="siteName" placeholder="FAYDA" />
+        </label>
+        <label>Site Tagline
+          <input type="text" id="siteTagline" placeholder="Your Social Directory" />
+        </label>
+        <label>Hero Subtitle
+          <input type="text" id="heroSubtitle" placeholder="All your essential links in one beautiful place." />
+        </label>
+        <label>Footer Text
+          <input type="text" id="footerText" placeholder="© 2026 FAYDA. Built with ❤️" />
+        </label>
+        <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+        <p class="save-msg" id="settingsSaved" hidden>✅ Settings saved! Refresh the main site.</p>
+      </div>
+    </section>
+
+    <!-- TAB: APPEARANCE -->
+    <section class="tab-content" id="tab-appearance">
+      <div class="panel-header"><h2>Appearance</h2></div>
+      <div class="settings-form">
+        <label>Accent Color
+          <input type="color" id="accentColor" value="#6366f1" />
+        </label>
+        <label>Secondary Accent
+          <input type="color" id="accent2Color" value="#8b5cf6" />
+        </label>
+        <label>Hero Gradient Start
+          <input type="color" id="heroStart" value="#6366f1" />
+        </label>
+        <label>Hero Gradient End
+          <input type="color" id="heroEnd" value="#ec4899" />
+        </label>
+        <button class="btn-primary" onclick="saveAppearance()">Save Appearance</button>
+        <p class="save-msg" id="appearanceSaved" hidden>✅ Appearance saved! Refresh the main site.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ADD / EDIT MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Category</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <form id="categoryForm">
+        <input type="hidden" id="editIndex" value="-1" />
+        <label>Title *
+          <input type="text" id="catTitle" placeholder="e.g. YouTube" required />
+        </label>
+        <label>Description *
+          <input type="text" id="catDesc" placeholder="Short description" required />
+        </label>
+        <label>Logo Image <span style="font-weight:400;color:var(--text-muted)">(optional — overrides emoji)</span>
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-preview" id="uploadPreview">
+              <span id="uploadPlaceholder">📁 Click or drag image here</span>
+              <img id="previewImg" src="" alt="preview" hidden />
+            </div>
+            <input type="file" id="catImage" accept="image/*" style="display:none" />
+            <div class="upload-btns">
+              <button type="button" class="btn-secondary" id="browseBtn">Browse</button>
+              <button type="button" class="btn-icon delete" id="clearImg" title="Remove image">✕</button>
+            </div>
+          </div>
+        </label>
+        <label>Emoji / Icon <span style="font-weight:400;color:var(--text-muted)">(used if no image)</span>
+          <input type="text" id="catEmoji" placeholder="e.g. ▶️" maxlength="4" />
+        </label>
+        <label>Link (URL) *
+          <input type="url" id="catLink" placeholder="https://example.com" required />
+        </label>
+        <label>Card Background Color
+          <input type="color" id="catBg" value="#fff0f0" />
+        </label>
+        <label>Icon Color
+          <input type="color" id="catColor" value="#ff0000" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancelModal">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
